@@ -9,6 +9,7 @@ interface Props {
 
 const SAMPLE_SHEETS = [
   { name: "CS시트", url: "https://docs.google.com/spreadsheets/d/1vcg6FiLuuzT_OnISIA-RnpIrKPb3tOJwpTpvvv-ZqYI/export?format=csv" },
+  { name: "2025마켓", url: "https://docs.google.com/spreadsheets/d/1j73H-KzataADbYMtrxtA6YPGIOwWdJZz2tq1qbvQefU/export?format=csv" },
 ];
 
 export default function CsvInput({ onSubmit, loading }: Props) {

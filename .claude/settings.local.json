@@ -11,7 +11,9 @@
       "Bash(git config:*)",
       "Bash(gh auth:*)",
       "Bash(gh repo:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(taskkill //F //IM node.exe)",
+      "Bash(rm -rf .next)"
     ]
   }
 }

@@ -5,6 +5,7 @@ import CsvInput from "@/components/CsvInput";
 import DataPreview from "@/components/DataPreview";
 import InsightCards from "@/components/InsightCards";
 import ChartPanel, { ChartData } from "@/components/ChartPanel";
+import DeepInsights, { DeepInsight, AdditionalData } from "@/components/DeepInsights";
 
 interface Insights {
   summary: string;
@@ -12,6 +13,8 @@ interface Insights {
   outliers: string[];
   actions: string[];
   charts?: ChartData[];
+  deepInsights?: DeepInsight[];
+  additionalData?: AdditionalData[];
 }
 
 export default function Home() {
@@ -126,6 +129,12 @@ export default function Home() {
             <ChartPanel charts={insights.charts} />
           )}
           <InsightCards insights={insights} />
+          {insights.deepInsights && insights.additionalData && (
+            <DeepInsights
+              deepInsights={insights.deepInsights}
+              additionalData={insights.additionalData}
+            />
+          )}
         </>
       )}
     </main>

@@ -10,8 +10,6 @@ const COLORS = ["#6366f1", "#22c55e", "#f59e0b", "#ef4444", "#8b5cf6", "#06b6d4"
 export interface ChartData {
   title: string;
   type: "bar" | "line" | "pie" | "area";
-  xKey: string;
-  yKey: string;
   data: Record<string, unknown>[];
 }
 
@@ -20,25 +18,27 @@ interface Props {
 }
 
 function ChartRenderer({ chart }: { chart: ChartData }) {
-  const { type, data, xKey, yKey } = chart;
+  const { type, data } = chart;
+
+  if (!data || data.length === 0) return null;
 
   return (
     <ResponsiveContainer width="100%" height={280}>
       {type === "bar" ? (
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey={xKey || "name"} fontSize={12} />
+          <XAxis dataKey="name" fontSize={12} angle={-20} textAnchor="end" height={60} />
           <YAxis fontSize={12} />
           <Tooltip />
-          <Bar dataKey={yKey || "value"} fill="#6366f1" radius={[4, 4, 0, 0]} />
+          <Bar dataKey="value" fill="#6366f1" radius={[4, 4, 0, 0]} />
         </BarChart>
       ) : type === "line" ? (
         <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey={xKey || "name"} fontSize={12} />
+          <XAxis dataKey="name" fontSize={12} angle={-20} textAnchor="end" height={60} />
           <YAxis fontSize={12} />
           <Tooltip />
-          <Line type="monotone" dataKey={yKey || "value"} stroke="#6366f1" strokeWidth={2} />
+          <Line type="monotone" dataKey="value" stroke="#6366f1" strokeWidth={2} dot={{ r: 4 }} />
         </LineChart>
       ) : type === "pie" ? (
         <PieChart>
@@ -46,8 +46,8 @@ function ChartRenderer({ chart }: { chart: ChartData }) {
           <Legend />
           <Pie
             data={data}
-            dataKey={yKey || "value"}
-            nameKey={xKey || "name"}
+            dataKey="value"
+            nameKey="name"
             cx="50%"
             cy="50%"
             outerRadius={100}
@@ -61,10 +61,10 @@ function ChartRenderer({ chart }: { chart: ChartData }) {
       ) : (
         <AreaChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey={xKey || "name"} fontSize={12} />
+          <XAxis dataKey="name" fontSize={12} angle={-20} textAnchor="end" height={60} />
           <YAxis fontSize={12} />
           <Tooltip />
-          <Area type="monotone" dataKey={yKey || "value"} stroke="#6366f1" fill="#6366f1" fillOpacity={0.2} />
+          <Area type="monotone" dataKey="value" stroke="#6366f1" fill="#6366f1" fillOpacity={0.2} />
         </AreaChart>
       )}
     </ResponsiveContainer>
