@@ -20,18 +20,29 @@ export async function POST(req: NextRequest) {
 
     const message = await anthropic.messages.create({
       model: "claude-sonnet-4-20250514",
-      max_tokens: 1000,
+      max_tokens: 2000,
       messages: [
         {
           role: "user",
           content: `아래 CSV 데이터를 분석하고, 반드시 아래 JSON 형식으로만 응답해주세요. JSON 외의 텍스트는 포함하지 마세요.
+
+차트 데이터는 데이터의 특성에 맞게 3~4개를 생성해주세요. 각 차트의 type은 "bar", "line", "pie", "area" 중 하나를 선택하세요.
 
 형식:
 {
   "summary": "전체 데이터에 대한 요약 (한국어, 2-3문장)",
   "patterns": ["발견된 패턴 1", "발견된 패턴 2"],
   "outliers": ["이상값이나 특이사항 1"],
-  "actions": ["추천 액션 아이템 1", "추천 액션 아이템 2"]
+  "actions": ["추천 액션 아이템 1", "추천 액션 아이템 2"],
+  "charts": [
+    {
+      "title": "차트 제목",
+      "type": "bar",
+      "xKey": "x축 필드명",
+      "yKey": "y축 필드명",
+      "data": [{"name": "항목1", "value": 100}, {"name": "항목2", "value": 200}]
+    }
+  ]
 }
 
 CSV 데이터:

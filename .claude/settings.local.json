@@ -7,7 +7,11 @@
       "Bash(rm -rf node_modules package-lock.json)",
       "Bash(npm uninstall:*)",
       "Bash(mv \"D:/IISroot/ht-1/.claude/_claude_backup/CLAUDE.md\" \"D:/IISroot/ht-1/.claude/CLAUDE.md\")",
-      "Bash(rm -rf \"D:/IISroot/ht-1/.claude/_claude_backup\")"
+      "Bash(rm -rf \"D:/IISroot/ht-1/.claude/_claude_backup\")",
+      "Bash(git config:*)",
+      "Bash(gh auth:*)",
+      "Bash(gh repo:*)",
+      "Bash(npm run:*)"
     ]
   }
 }

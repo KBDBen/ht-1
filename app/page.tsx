@@ -4,12 +4,14 @@ import { useState } from "react";
 import CsvInput from "@/components/CsvInput";
 import DataPreview from "@/components/DataPreview";
 import InsightCards from "@/components/InsightCards";
+import ChartPanel, { ChartData } from "@/components/ChartPanel";
 
 interface Insights {
   summary: string;
   patterns: string[];
   outliers: string[];
   actions: string[];
+  charts?: ChartData[];
 }
 
 export default function Home() {
@@ -118,7 +120,14 @@ export default function Home() {
         </>
       )}
 
-      {insights && <InsightCards insights={insights} />}
+      {insights && (
+        <>
+          {insights.charts && insights.charts.length > 0 && (
+            <ChartPanel charts={insights.charts} />
+          )}
+          <InsightCards insights={insights} />
+        </>
+      )}
     </main>
   );
 }
